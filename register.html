@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register — Simple App</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="auth-wrap">
+    <div class="card">
+      <div class="brand">
+        <div class="brand-mark">S</div>
+        <div class="brand-name">Simple App</div>
+      </div>
+
+      <h1>Buat akun baru</h1>
+      <p class="subtitle">Isi data di bawah untuk mendaftar.</p>
+
+      <div id="message" class="msg" role="alert" aria-live="polite"></div>
+
+      <form id="register-form" novalidate>
+        <div class="field">
+          <label for="name">Nama</label>
+          <input type="text" id="name" name="name" autocomplete="name"
+                 placeholder="Nama lengkap" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email"
+                 placeholder="nama@example.com" required>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password"
+                 autocomplete="new-password" placeholder="••••••••" required>
+          <span class="hint">Minimal 8 karakter.</span>
+        </div>
+
+        <div class="field">
+          <label for="confirm">Konfirmasi password</label>
+          <input type="password" id="confirm" name="confirm"
+                 autocomplete="new-password" placeholder="••••••••" required>
+        </div>
+
+        <div class="btn-row">
+          <button type="submit" class="btn btn-primary">Register</button>
+          <button type="button" class="btn btn-secondary" id="back-btn">Kembali ke login</button>
+        </div>
+      </form>
+
+      <p class="footnote">Sudah punya akun? <a href="index.html">Login di sini</a>.</p>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById('register-form');
+      var message = document.getElementById('message');
+      var submitBtn = form.querySelector('button[type="submit"]');
+
+      function show(text, kind) {
+        message.textContent = text;
+        message.className = 'msg show ' + kind;
+      }
+
+      document.getElementById('back-btn').addEventListener('click', function () {
+        location.href = 'index.html';
+      });
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        message.className = 'msg';
+
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var confirm = document.getElementById('confirm').value;
+
+        if (password !== confirm) {
+          show('Konfirmasi password tidak cocok.', 'error');
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Memproses…';
+
+        Auth.register(name, email, password)
+          .then(function () {
+            location.href = 'index.html?registered=1';
+          })
+          .catch(function (err) {
+            show(err.message, 'error');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Register';
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

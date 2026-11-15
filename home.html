@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Homepage — Simple App</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">S</div>
+        <div class="brand-name">Simple App</div>
+      </div>
+      <button type="button" class="btn-logout" id="logout-btn">Logout</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Halo, <span id="user-name">pengguna</span> 👋</h1>
+      <p>Kamu login sebagai <span id="user-email">—</span>.</p>
+    </section>
+
+    <section class="grid">
+      <div class="tile">
+        <p class="stat">12</p>
+        <h2>Tugas aktif</h2>
+        <p>Pekerjaan yang sedang berjalan minggu ini.</p>
+      </div>
+      <div class="tile">
+        <p class="stat">4</p>
+        <h2>Notifikasi</h2>
+        <p>Pesan baru yang belum kamu baca.</p>
+      </div>
+      <div class="tile">
+        <p class="stat">98%</p>
+        <h2>Uptime</h2>
+        <p>Ketersediaan layanan 30 hari terakhir.</p>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="tile">
+        <h2>Profil</h2>
+        <p>Atur nama, email, dan preferensi akun kamu.</p>
+      </div>
+      <div class="tile">
+        <h2>Pengaturan</h2>
+        <p>Kelola keamanan, notifikasi, dan tampilan.</p>
+      </div>
+      <div class="tile">
+        <h2>Bantuan</h2>
+        <p>Panduan singkat dan kontak dukungan.</p>
+      </div>
+    </section>
+
+    <p class="note">
+      Catatan: ini prototipe tampilan. Login dan registrasi disimpan di
+      localStorage browser, bukan di server — belum aman untuk data nyata.
+    </p>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script>
+    (function () {
+      var user = Auth.requireAuth('index.html');
+      if (!user) return;
+
+      document.getElementById('user-name').textContent = user.name;
+      document.getElementById('user-email').textContent = user.email;
+
+      document.getElementById('logout-btn').addEventListener('click', function () {
+        Auth.logout();
+        location.replace('index.html');
+      });
+    })();
+  </script>
+</body>
+</html>
