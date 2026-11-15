@@ -14,7 +14,7 @@
         <div class="brand-name">Simple App</div>
       </div>
 
-      <h1>Masuk ke akun kamu</h1>
+      <h1>Masuk ke akun kamu ✨</h1>
       <p class="subtitle">Gunakan email dan password yang sudah terdaftar.</p>
 
       <div id="message" class="msg" role="alert" aria-live="polite"></div>
@@ -33,9 +33,9 @@
         </div>
 
         <div class="btn-row">
-          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="submit" class="btn btn-primary">🚀 Login</button>
           <div class="divider">atau</div>
-          <button type="button" class="btn btn-secondary" id="register-btn">Register</button>
+          <button type="button" class="btn btn-secondary" id="register-btn">📝 Register</button>
         </div>
       </form>
 
@@ -62,7 +62,7 @@
 
       // A fresh registration lands here with ?registered=1
       if (new URLSearchParams(location.search).get('registered') === '1') {
-        show('Akun berhasil dibuat. Silakan login.', 'success');
+        show('🎉 Akun berhasil dibuat. Silakan login.', 'success');
       }
 
       document.getElementById('register-btn').addEventListener('click', function () {
@@ -82,7 +82,7 @@
         }
 
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Memproses…';
+        submitBtn.textContent = '⏳ Memproses…';
 
         Auth.login(email, password)
           .then(function () {
@@ -91,7 +91,7 @@
           .catch(function (err) {
             show(err.message, 'error');
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Login';
+            submitBtn.textContent = '🚀 Login';
             document.getElementById('password').value = '';
           });
       });

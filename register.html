@@ -14,7 +14,7 @@
         <div class="brand-name">Simple App</div>
       </div>
 
-      <h1>Buat akun baru</h1>
+      <h1>Buat akun baru 🎯</h1>
       <p class="subtitle">Isi data di bawah untuk mendaftar.</p>
 
       <div id="message" class="msg" role="alert" aria-live="polite"></div>
@@ -46,8 +46,8 @@
         </div>
 
         <div class="btn-row">
-          <button type="submit" class="btn btn-primary">Register</button>
-          <button type="button" class="btn btn-secondary" id="back-btn">Kembali ke login</button>
+          <button type="submit" class="btn btn-primary">🚀 Register</button>
+          <button type="button" class="btn btn-secondary" id="back-btn">← Kembali ke login</button>
         </div>
       </form>
 
@@ -86,7 +86,7 @@
         }
 
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Memproses…';
+        submitBtn.textContent = '⏳ Memproses…';
 
         Auth.register(name, email, password)
           .then(function () {
@@ -95,7 +95,7 @@
           .catch(function (err) {
             show(err.message, 'error');
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Register';
+            submitBtn.textContent = '🚀 Register';
           });
       });
     })();
